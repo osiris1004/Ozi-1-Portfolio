@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { About } from '../../components/About/About'
 import { Heading } from '../../components/Heading/Heading'
 import { Introduction } from '../../components/Introduction/Introduction'
 
@@ -10,6 +11,7 @@ const HomePage = () => {
 
         <Heading/>
         <Introduction/>
+        <About />
     </div>
     
   )
