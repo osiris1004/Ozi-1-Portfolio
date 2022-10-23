@@ -32,6 +32,10 @@ code {
   font-family: 'Noto Sans Mono', monospace;
   font-size: 15px;
 }
+.fontKeySm{
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 13px;
+}
 
 .text{
   font-family: 'Red Hat Display', sans-serif;

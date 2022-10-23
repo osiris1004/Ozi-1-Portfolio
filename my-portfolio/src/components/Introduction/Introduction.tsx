@@ -2,7 +2,7 @@ import React from "react";
 
 export const Introduction = () => {
   return (
-    <div className={`border border-red-500 w-8/12 m-auto h-screen flex items-center`}>
+    <div className={` border-red-500 w-8/12 m-auto h-screen flex items-center`}>
      <div className={` border-white-500 `}>
        {/* text */}
        <div>
