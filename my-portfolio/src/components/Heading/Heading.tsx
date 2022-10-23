@@ -2,7 +2,7 @@ import React from "react";
 
 export const Heading = () => {
   return (
-    <div className={`flex py-5 font-semibold`}>
+    <div className={`flex py-5 font-semibold`} >
       <div className={`border border-red-500`}>LOGO</div>
 
       <button className={`border border-red-500 ml-auto p-2 hover:text-sky-700`}>

@@ -1,9 +1,12 @@
 import React from 'react'
+import HomePage from './HomePage/HomePage'
 
-const kosziE = () => {
+const KosziE = () => {
   return (
-    <div>kosziE</div>
+    <div className={`border-sky-500 bg-[#092636]`}>
+      <HomePage/>
+    </div>
   )
 }
 
-export default kosziE
+export default KosziE

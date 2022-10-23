@@ -3,6 +3,7 @@ import React from 'react'
 import { About } from '../../components/About/About'
 import { Heading } from '../../components/Heading/Heading'
 import { Introduction } from '../../components/Introduction/Introduction'
+import { MyProjects } from '../../components/MyProjects/MyProjects'
 import { WorkedSites } from '../../components/SiteIWorked/WorkedSites'
 
 
@@ -14,6 +15,7 @@ const HomePage = () => {
         <Introduction/>
         <About />
         <WorkedSites/>
+        <MyProjects/>
     </div>
     
   )
