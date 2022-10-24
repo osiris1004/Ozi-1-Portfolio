@@ -1,72 +1,74 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleRight } from '@fortawesome/free-solid-svg-icons'
 import React from "react";
 
 export const About = () => {
   return (
-    <div className={`border border-red-500 w-2/4 m-auto`}>
+    <div className={` border-gray-500 lg:w-8/12 md:w-full m-auto h-screen`}>
       {/* heading component that will be repeatably used  in different component*/}
-      <div className={`flex border border-sky-500  py-5`}>
-        <div className="border border-green-500 whitespace-nowrap font-semibold text-lg">
-          <span className={`text-sky-700`}>02.</span><span className={`text-xl font-extrabold mx-2`}>About Me</span>
+      <div className={`flex  border-sky-500  py-5 text-gray-400`}>
+        <div className=" border-green-500 whitespace-nowrap font-semibold text-lg">
+          <span className={`text-green-600 fontKeyHead`}>02.</span><span className={`text-xl font-extrabold mx-2`}>About Me</span>
         </div>
-        <div className="border border-green-500 basis-full flex items-center ">
-          <hr className="border border-red-500 w-full"></hr>
+        <div className=" border-green-500 basis-full flex items-center ">
+          <hr className="border border-gray-500 bg-gray-500 w-full"></hr>
         </div>
       </div>
 
       {/* text and image */}
       <div className={`flex py-5`}>
-        <div className={`border border-sky-500 basis-11/12`}>
-          <p className={`border border-yellow-500 font-medium py-2`}>
+        <div className={` border-sky-500 basis-12/12`}>
+          <p className={` border-yellow-500 font-medium py-2 text-gray-500`}>
             Hello! My name is Brittany and I enjoy creating things that live on
             the internet. My interest in web development started back in 2012
             when I decided to try editing custom Tumblr themes — turns out
             hacking together a custom reblog button taught me a lot about HTML &
             CSS!
           </p>
-          <p className={`border border-yellow-500 font-medium py-2`}>
+          <p className={` border-yellow-500 font-medium py-2 text-gray-500`}>
             Fast-forward to today, and I’ve had the privilege of working at an
             advertising agency, a start-up, a huge corporation, and a
             student-led design studio. My main focus these days is building
             accessible, inclusive products and digital experiences at
             Upstatement for a variety of clients.
           </p>
-          <p className={`border border-yellow-500 font-medium py-2`}>
+          <p className={` border-yellow-500 font-medium py-2 text-gray-500`}>
             I also recently launched a course that covers everything you need to
             build a web app with the Spotify API using Node & React.
           </p>
-          <p className={`border border-yellow-500 font-medium py-2`}>
+          <p className={` border-yellow-500 font-medium py-2 text-gray-500`}>
             Here are a few technologies I’ve been working with recently:
           </p>
           {/* list of technologies */}
-          <div className={`flex flex-wrap`}>
-            <div className={`border border-red-500 flex font-medium`}>
-              <p>*</p>
-              <p className={`border mx-2`}>JavaScript (ES6+)</p>
+          <div className={`flex flex-wrap fontKeySm text-gray-500`}>
+            <div className={` border-red-500 flex font-medium`}>
+              <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
+              <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
 
-            <div className={`border border-red-500 flex font-medium`}>
-              <p>*</p>
-              <p className={`border mx-2`}>JavaScript (ES6+)</p>
+            <div className={` border-red-500 flex font-medium`}>
+            <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
+              <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
 
-            <div className={`border border-red-500 flex font-medium`}>
-              <p>*</p>
-              <p className={`border mx-2`}>JavaScript (ES6+)</p>
+            <div className={` border-red-500 flex font-medium`}>
+            <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
+              <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
 
-            <div className={`border border-red-500 flex font-medium`}>
-              <p>*</p>
-              <p className={`border mx-2`}>JavaScript (ES6+)</p>
+            <div className={` -red-500 flex font-medium`}>
+            <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
+              <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
 
-            <div className={`border border-red-500 flex font-medium`}>
-              <p>*</p>
-              <p className={`border mx-2`}>JavaScript (ES6+)</p>
+            <div className={` border-red-500 flex font-medium`}>
+            <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
+              <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
 
-            <div className={`border border-red-500 flex font-medium`}>
-              <p>*</p>
-              <p className={`border mx-2`}>JavaScript (ES6+)</p>
+            <div className={` border-red-500 flex font-medium`}>
+            <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
+              <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
           </div>
         </div>
