@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.p{
+  font-family: 'Freehand', cursive;
+}
+  
+
+.fontNameXl{
+  font-family: 'Permanent Marker', cursive;
+  font-size: 64px;
+  font-weight: bolder;
+}
+.fontName{
+  font-family: 'Permanent Marker', cursive;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+.fontKey{
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 15px;
+}
+.fontKeySm{
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 13px;
+}
+.fontKeyHead{
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 18px;
+}
+.fontKeyHeadBoldLg{
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 25px;
+  font-weight: bolder;
+}
+.text{
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+.textSm{
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 13px;
+  font-weight: bolder;
+}
+
+.textBold{
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: bolder;
+}
