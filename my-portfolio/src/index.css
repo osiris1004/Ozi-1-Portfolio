@@ -40,6 +40,11 @@ code {
   font-family: 'Noto Sans Mono', monospace;
   font-size: 18px;
 }
+.fontKeyHeadBoldLg{
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 25px;
+  font-weight: bolder;
+}
 .text{
   font-family: 'Red Hat Display', sans-serif;
 }

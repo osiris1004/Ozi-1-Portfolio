@@ -4,7 +4,7 @@ import { About } from '../../components/About/About'
 import { Heading } from '../../components/Heading/Heading'
 import { Introduction } from '../../components/Introduction/Introduction'
 import { MyProjects } from '../../components/MyProjects/MyProjects'
-import { WorkedSites } from '../../components/SiteIWorked/WorkedSites'
+import { WorkedSites } from '../../components/WorkedSites/WorkedSites'
 
 
 const HomePage = () => {
