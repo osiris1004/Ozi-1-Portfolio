@@ -43,3 +43,14 @@ code {
 .text{
   font-family: 'Red Hat Display', sans-serif;
 }
+
+.textSm{
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 13px;
+  font-weight: bolder;
+}
+
+.textBold{
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: bolder;
+}
