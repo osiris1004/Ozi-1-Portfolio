@@ -3,6 +3,45 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import { faSquarePersonConfined } from '@fortawesome/free-solid-svg-icons'
 export const MyProjects = () => {
+
+  const value = [1,2,3,4]
+
+  let currentIndex = 0 
+  const next = (n: number)=>{
+    console.log("currentIndex "+ currentIndex)
+
+    // currentIndex < 0 ? currentIndex = value.length  : currentIndex = currentIndex+n
+    // currentIndex> value.length-1 ? currentIndex = 0 : currentIndex = currentIndex+n
+
+   if(n === -1){
+    if(currentIndex <= 0 ){
+      currentIndex = value.length 
+      currentIndex = currentIndex+n
+      console.log(value[currentIndex])
+    }else{
+      currentIndex = currentIndex+n
+      console.log(value[currentIndex])
+    }
+   }else{
+
+    if(currentIndex >= value.length-1  ){
+      currentIndex = 0
+     
+      console.log(value[currentIndex])
+    }else{
+      currentIndex = currentIndex+n
+      console.log(value[currentIndex])
+    }
+
+   }
+
+
+  
+
+  }
+
+  
+
   return (
     <div
       className={` border-red-500 w-8/12 m-auto h-screen flex items-center`}
@@ -43,6 +82,15 @@ export const MyProjects = () => {
             src="https://halcyon-theme.netlify.app/static/demo-30184fa83cb4ab8fb7809cf95cc8aec3.png"
           />
         </div>
+
+        {/* my algotith */}
+        <button onClick={()=>next(1)}>
+          next
+        </button>
+
+        <button onClick={()=>next(-1)}>
+          prev
+        </button>
       </div>
     </div>
   );
