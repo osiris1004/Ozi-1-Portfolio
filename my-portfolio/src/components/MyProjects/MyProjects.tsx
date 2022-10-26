@@ -21,7 +21,7 @@ const goToPrevious = () =>{
 
 }
   return (
-    <div className={` border-red-500 w-8/12 m-auto h-screen flex items-center`}>
+    <div className={` border-red-500  md:w-8/12 m-auto h-screen flex items-center`}>
       <div>
         <div className={`border border-red-500`}>
         {slice[currentIndex]}
@@ -29,7 +29,6 @@ const goToPrevious = () =>{
 
         {/* my algotith */}
         <button onClick={()=>goToNext()}>next</button>
-
         <button onClick={()=>goToPrevious()}>prev</button>
       </div>
     </div>

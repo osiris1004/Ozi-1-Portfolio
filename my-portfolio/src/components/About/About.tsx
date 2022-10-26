@@ -4,7 +4,7 @@ import React from "react";
 
 export const About = () => {
   return (
-    <div className={` border-gray-500 lg:w-8/12 md:w-full m-auto h-screen`}>
+    <div className={`border border-green-500 lg:w-8/12 md:w-full m-auto sm:h-screen`}>
       {/* heading component that will be repeatably used  in different component*/}
       <div className={`flex  border-sky-500  py-5 text-gray-400`}>
         <div className=" border-green-500 whitespace-nowrap font-semibold text-lg">
@@ -16,7 +16,7 @@ export const About = () => {
       </div>
 
       {/* text and image */}
-      <div className={`flex py-5`}>
+      <div className={`flex flex-wrap sm:flex-nowrap py-5`}>
         <div className={` border-sky-500 basis-12/12`}>
           <p className={` border-yellow-500 font-medium py-2 text-gray-500`}>
             Hello! My name is Brittany and I enjoy creating things that live on
@@ -72,7 +72,7 @@ export const About = () => {
             </div>
           </div>
         </div>
-        <div className={`flex border border-sky-500 items-center px-8`}>
+        <div className={`flex border border-sky-500 items-center px-8 py-8 sm:py-0`}>
           <img
             alt={"profile"}
             src={
