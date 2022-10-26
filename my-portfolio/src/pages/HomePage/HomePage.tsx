@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react'
 import { About } from '../../components/About/About'
+import { Clock } from '../../components/Clock/Clock'
 import { Heading } from '../../components/Heading/Heading'
 import { Introduction } from '../../components/Introduction/Introduction'
 import { Menu } from '../../components/Menu/Menu'
@@ -19,6 +20,9 @@ const HomePage = () => {
        <div className={`relative`}>
        <div className={`absolute h-screen bg-[#092631]/[.9] w-full ${dMenu ? "hidden" : "block"} mt-3`}>
        <Menu handleMenu ={displayMenu }/>
+       </div>
+       <div className={`fixed bottom-0`}>
+        <Clock/>
        </div>
         <Heading handleMenu ={displayMenu }/>
         <Introduction/>
