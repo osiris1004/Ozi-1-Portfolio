@@ -4,10 +4,10 @@ import React from "react";
 
 export const WorkedSites = () => {
   return (
-    <div className={`  border-red-500 h-screen w-8/12 m-auto flex items-center text-gray-500`}>
-      <div className={` border-red-500 flex`}>
+    <div className={` border border-red-500 h-screen md:w-8/12 m-auto flex items-center text-gray-500`}>
+      <div className={` border-red-500 flex flex-wrap`}>
               {/* scrolled list */}
-      <div className={` border-blue-500 pl-3 pr-5`}>
+      <div className={` border-blue-500 pl-3 pr-5 sm:basis-1/3`}>
         <div className={`border-l border-green-500  py-1 px-2 fontKeySm`}>Upstatement</div>
         <div className={`border-l border-green-500  py-1 px-2 fontKeySm`}>Scout</div>
         <div className={`border-l border-green-500  py-1 px-2 fontKeySm`}>Apple</div>
@@ -16,7 +16,7 @@ export const WorkedSites = () => {
         <div className={`border-l border-green-500  py-1 px-2 fontKeySm`}>MullenLowe</div>
       </div>
       {/* Display view from scrolled list  */}
-      <div className={` border-blue-500 `}>
+      <div className={` border-blue-500 mt-6 sm:mt-0 sm:basis-2/3`}>
         <p className={`font-medium textBold`}>
           Engineer @ Upstatement  
         </p>
