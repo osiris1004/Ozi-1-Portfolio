@@ -7,7 +7,7 @@ export const Introduction = () => {
        {/* text */}
        <div>
         <p className={` border-yellow-500 font-extrabold py-2 fontKey text-green-600 `}>Hi, my name is</p>
-        <p className={` border-yellow-500 text-5xl font-extrabold py-2 text-gray-400 fontNameXl`}>Brittany Chiang.</p>
+        <p className={` border-yellow-500 text-5xl font-extrabold py-2 text-gray-400 fontNameXl`}>Aline Sopfossi.</p>
         <p className={` border-yellow-500 text-5xl font-extrabold text-gray-500 py-2 fontName`}>I build things for the web.</p>
         <p className={` border-yellow-500 font-medium py-2 pt-7 text-gray-500 lg:w-9/12`}>
           I’m a software engineer specializing in building (and occasionally
