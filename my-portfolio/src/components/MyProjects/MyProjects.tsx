@@ -2,6 +2,9 @@ import React, { ReactComponentElement, ReactElement, useEffect, useRef, useState
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faSquarePersonConfined } from "@fortawesome/free-solid-svg-icons";
+import { faHandPointLeft} from "@fortawesome/free-solid-svg-icons";
+import { faHandPointRight} from "@fortawesome/free-solid-svg-icons";
+import { PagesHeading } from "../PagesHeading/PagesHeading";
 export const MyProjects = () => {
 
 const slice = [<ComponentTest/>,<ComponentTest2/>,<ComponentTest3/>]
@@ -23,13 +26,21 @@ const goToPrevious = () =>{
   return (
     <div className={` border-red-500  md:w-8/12 m-auto h-screen flex items-center`}>
       <div>
-        <div className={`border border-red-500`}>
+        <PagesHeading pageNumber={3} headingText={'Some Things I ve Build'}/>
+        <div className={` border-red-500 relative flex items-center`}>
         {slice[currentIndex]}
+        <button onClick={()=>goToNext()} className={` border-red-500  right-0 absolute transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110`}> <FontAwesomeIcon
+                    icon={faHandPointRight}
+                    style={{ color: "green", height:30 }}
+                  /></button>
+        <button onClick={()=>goToPrevious()} className={` border-red-500  absolute transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110`}><FontAwesomeIcon
+                    icon={faHandPointLeft}
+                    style={{ color: "green", height:30  }}
+                  /></button>
         </div>
 
         {/* my algotith */}
-        <button onClick={()=>goToNext()}>next</button>
-        <button onClick={()=>goToPrevious()}>prev</button>
+       
       </div>
     </div>
   );

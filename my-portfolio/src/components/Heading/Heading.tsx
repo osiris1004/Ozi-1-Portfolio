@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMenorah } from "@fortawesome/free-solid-svg-icons";
-
+import logo from '../../assets/LOGO.png'
 
 interface Iprops{
   handleMenu : ()=>void
@@ -13,7 +13,9 @@ export const Heading = ({handleMenu}:Iprops) => {
   return (
     <div className={` py-5 font-semibold fontKeySm text-gray-500 `}>
       <div className={`hidden sm:flex`}>
-        <div className={`border border-red-500`}>LOGO</div>
+        <div className={` border-red-500 h-7`}>
+        <img src={logo} alt="Green Leaf Logo Png@clipartmax.com" style={{width:70}}/>
+          </div>
 
         <button className={` border-red-500 ml-auto p-2 hover:text-green-600 `}>
           <span className={`text-green-600`}>01.</span>About
@@ -42,3 +44,4 @@ export const Heading = ({handleMenu}:Iprops) => {
     </div>
   );
 };
+
