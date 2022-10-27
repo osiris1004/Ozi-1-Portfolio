@@ -1,22 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleRight } from '@fortawesome/free-solid-svg-icons'
 import React from "react";
+import { PagesHeading } from "../PagesHeading/PagesHeading";
 
 export const About = () => {
   return (
-    <div className={`border border-green-500 lg:w-8/12 md:w-full m-auto sm:h-screen`}>
-      {/* heading component that will be repeatably used  in different component*/}
-      <div className={`flex  border-sky-500  py-5 text-gray-400`}>
-        <div className=" border-green-500 whitespace-nowrap font-semibold text-lg">
-          <span className={`text-green-600 fontKeyHead`}>02.</span><span className={`text-xl font-extrabold mx-2`}>About Me</span>
-        </div>
-        <div className=" border-green-500 basis-full flex items-center ">
-          <hr className="border border-gray-500 bg-gray-500 w-full"></hr>
-        </div>
-      </div>
+    <div className={` border-green-500 w-8/12   m-auto md:h-screen flex items-center`}>
+     <div>
+       {/* heading component that will be repeatably used  in different component*/}
+      <PagesHeading pageNumber={2} headingText={'About me'}/>
 
       {/* text and image */}
-      <div className={`flex flex-wrap sm:flex-nowrap py-5`}>
+      <div className={`flex flex-wrap sm:flex-nowrap `}>
         <div className={` border-sky-500 basis-12/12`}>
           <p className={` border-yellow-500 font-medium py-2 text-gray-500`}>
             Hello! My name is Brittany and I enjoy creating things that live on
@@ -40,28 +35,28 @@ export const About = () => {
             Here are a few technologies I’ve been working with recently:
           </p>
           {/* list of technologies */}
-          <div className={`flex flex-wrap fontKeySm text-gray-500`}>
-            <div className={` border-red-500 flex font-medium`}>
+          <div className={`grid grid-cols-2 fontKeySm text-gray-500 mt-4  w-fit gap-3`}>
+            <div className={`  border-red-500 flex font-medium box-content `}>
               <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
               <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
 
-            <div className={` border-red-500 flex font-medium`}>
+            <div className={` border-red-500 flex font-medium `}>
             <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
               <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
 
-            <div className={` border-red-500 flex font-medium`}>
+            <div className={` border-red-500 flex font-medium `}>
             <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
               <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
 
-            <div className={` -red-500 flex font-medium`}>
+            <div className={` border-red-500 flex font-medium `}>
             <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
               <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
 
-            <div className={` border-red-500 flex font-medium`}>
+            <div className={` border-red-500 flex font-medium `}>
             <div><FontAwesomeIcon icon={faCircleRight} style={{"color":"green"}}/></div>
               <p className={` mx-2`}>JavaScript (ES6+)</p>
             </div>
@@ -72,7 +67,7 @@ export const About = () => {
             </div>
           </div>
         </div>
-        <div className={`flex border border-sky-500 items-center px-8 py-8 sm:py-0`}>
+        <div className={`flex  border-sky-500 items-center px-8 py-8 sm:py-0`}>
           <img
             alt={"profile"}
             src={
@@ -81,6 +76,9 @@ export const About = () => {
           />
         </div>
       </div>
+     </div>
     </div>
   );
 };
+
+
