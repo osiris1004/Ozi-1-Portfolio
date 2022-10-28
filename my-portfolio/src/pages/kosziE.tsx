@@ -1,5 +1,6 @@
 import React from 'react'
 import { Calender } from './Calender/Calender'
+import { Counter } from './Calender/Counter'
 
 import HomePage from './HomePage/HomePage'
 
@@ -10,6 +11,7 @@ const KosziE = () => {
       
       {/* <HomePage/> */}
       <Calender/>
+    
     </div>
   )
 }
