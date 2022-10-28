@@ -1,25 +1,35 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLeftLong} from "@fortawesome/free-solid-svg-icons";
-import { faRightLong} from "@fortawesome/free-solid-svg-icons";
-import React from 'react'
-import logo from '../../../../assets/LOGO.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
+import { faRightLong } from "@fortawesome/free-solid-svg-icons";
+import React from "react";
+import logo from "../../../../assets/LOGO.png";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
+import { decrement, increment } from "../../Redux/MonthNavigation/ActionMonthIndex";
 export const CalenderHeader = () => {
-  return (
-    <header className="px-4 py-2 flex item-center">
-        <img src={logo} alt={'calender'} className={`mr-2 w-12 h-12`}/>
-        <h1 className={`mr-10 text-xl text-gray-500 font-bold`}> calender</h1>
-        <button className="border rounded py-2 px-4 mr-5">
-            Today
-        </button>
-        <button>
-            <span className={`cursor-pointer text-gray-600 mx-2`}> 
-                <FontAwesomeIcon icon={faLeftLong}/>
-            </span>
+  const monthIndex = useAppSelector(state => state.monthIndex.monthIndex)
+  const dispatch = useAppDispatch();
 
-            <span className={`cursor-pointer text-gray-600 mx-2`}> 
-                <FontAwesomeIcon icon={faRightLong}/>
-            </span>
-        </button>
+  const year = new Date().getFullYear()
+  const date =new Date( year, monthIndex).toDateString()
+  return (
+    <header className="px-4 py-2 flex item-center border border-red-400">
+      <img src={logo} alt={"calender"} className={`mr-2 w-12 h-12`} />
+      <h1 className={`mr-10 text-xl text-gray-500 font-bold`}> calender</h1>
+      <button className="border rounded py-2 px-4 mr-5">Today</button>
+      <button onClick={()=>dispatch(increment(-1))}>
+        <span className={`cursor-pointer text-gray-600 mx-2`}>
+          <FontAwesomeIcon icon={faLeftLong} />
+        </span>
+      </button>
+
+      <button onClick={()=>dispatch(decrement(1))}>
+        <span className={`cursor-pointer text-gray-600 mx-2`}>
+          <FontAwesomeIcon icon={faRightLong} />
+        </span>
+      </button>
+      <h2 className={`ml-4 text-xl text-gray-500 font-bold py-2`}>
+        { date }
+      </h2>
     </header>
-  )
-}
+  );
+};

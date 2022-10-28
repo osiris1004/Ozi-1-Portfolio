@@ -1,8 +1,7 @@
 import React from 'react'
-import { Calender } from './Calender/Calender'
-import { Counter } from './Calender/Counter'
+import { Index } from './Calender/Index'
 
-import HomePage from './HomePage/HomePage'
+
 
 const KosziE = () => {
   //className={`border-sky-500 bg-[#092636]`}
@@ -10,7 +9,7 @@ const KosziE = () => {
     <div>
       
       {/* <HomePage/> */}
-      <Calender/>
+      <Index/>
     
     </div>
   )

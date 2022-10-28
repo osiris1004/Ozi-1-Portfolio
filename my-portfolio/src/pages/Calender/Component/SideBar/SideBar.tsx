@@ -1,7 +1,10 @@
 import React from 'react'
+import { SmallCalendar } from '../SmallCalendar'
 
 export const SideBar = () => {
   return (
-    <div>SideBar</div>
+    <aside>
+      <SmallCalendar/>
+    </aside>
   )
 }
