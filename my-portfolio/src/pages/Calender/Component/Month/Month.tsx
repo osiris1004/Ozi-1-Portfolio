@@ -2,7 +2,7 @@ import React from 'react'
 import { Day } from '../Day/Day'
 
 type Props ={
-    month : Date[][]
+    month : Date[][] 
 }
 
 export const Month = ({month}:Props) => {

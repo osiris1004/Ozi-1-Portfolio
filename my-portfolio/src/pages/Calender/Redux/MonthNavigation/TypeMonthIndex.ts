@@ -5,6 +5,7 @@ export interface IProps {
 
 export const INCREMENT_MONTH = "INCREMENT_MONTH";
 export const DECREMENT_MONTH = "DECREMENT_MONTH ";
+export const RESET = "RESET";
 
 
 
@@ -18,9 +19,14 @@ interface decrementMonthAction {
     payload: number
 }
 
+interface resetMonthAction {
+    type: typeof RESET
+    
+}
 
 
-export type monthIndexActionTypes = decrementMonthAction | incrementMonthAction 
+
+export type monthIndexActionTypes = decrementMonthAction | incrementMonthAction | resetMonthAction
 
 
 

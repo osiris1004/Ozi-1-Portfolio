@@ -4,27 +4,34 @@ import { faRightLong } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import { getMonth } from "../util";
-import { decrement, increment } from "../Redux/MonthNavigation/ActionMonthIndex";
+import {
+  decrement,
+  increment,
+} from "../Redux/MonthNavigation/ActionMonthIndex";
+import { setDaySelectedBySmallCalendar, setIndexBySmallCalendar } from "../Redux/globalRedux/Action";
 
 export const SmallCalendar = () => {
   const [currentMonthIdx, setCurrentMonthIdx] = useState(new Date().getMonth());
   const [currentMonth, setCurrentMonth] = useState<Date[][]>(getMonth());
 
-  const monthIndex = useAppSelector(state => state.monthIndex.monthIndex)
  
+
+  const monthIndex = useAppSelector((state) => state.monthIndex.monthIndex);
+  
 
   useEffect(() => {
     setCurrentMonth(getMonth(currentMonthIdx));
-    setCurrentMonthIdx(monthIndex)
-  }, [currentMonthIdx,monthIndex]);
-  function formatDate(t: Date, a: {}[], s: string) {
-    function format(m: any) {
-      let f = new Intl.DateTimeFormat("en", m);
-      return f.format(t);
-    }
-    return a.map(format).join(s);
-  }
+  }, [currentMonthIdx]);
 
+  useEffect(() => {
+    setCurrentMonthIdx(monthIndex);
+  }, [monthIndex]);
+
+  
+
+  
+
+  //! formmating date 1
   let a = [{ month: "long" }, { year: "numeric" }];
   let customDate = formatDate(
     new Date(new Date().getFullYear(), currentMonthIdx),
@@ -32,34 +39,91 @@ export const SmallCalendar = () => {
     " "
   );
 
-  const incrementBtn = (n:number = 1) =>{
-    setCurrentMonthIdx(prev=> prev-n)
-  }
+  const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
-  const decrementBtn = (n:number = 1) =>{
-    setCurrentMonthIdx(prev=> prev+n)
-  }
+  const incrementBtn = (n: number = 1) => {
+    setCurrentMonthIdx((prev) => prev - n);
+  };
 
-  //const date =new Date( new Date().getFullYear(), currentMonthIdx).toDateString()
+  const decrementBtn = (n: number = 1) => {
+    setCurrentMonthIdx((prev) => prev + n);
+  };
+
+  const daySelected = useAppSelector(state => state.global.daySelected)
+  const getCurrentDayClass = (day :Date) =>{
+    console.log(day.getDate() )
+
+    // const slcDay = daySelected && daySelected
+    // console.log(slcDay )
+    if(new Date().getMonth() === day.getMonth()){
+       
+        if(new Date().getDate() === day.getDate() ){
+          return "bg-blue-500 text-white rounded-full " 
+        }else if(day.getDate() === daySelected.getDate()){
+          return  "bg-blue-100 text-blue-600 rounded-full font-bold"
+        }else{
+          return ""
+        }
+    }
+}
+
+
+//day.getDate() === daySelected
+
+
+const dispatch = useAppDispatch()
+
+
 
   return (
     <div className={`mt-9`}>
       <header className={`flex justify-between`}>
         <p className={`ml-4  text-gray-500 `}>{customDate}</p>
-        <button onClick={()=>incrementBtn()}>
+        <div>
+        <button onClick={() => incrementBtn()}>
           <span className={`cursor-pointer text-gray-600 mx-2`}>
             <FontAwesomeIcon icon={faLeftLong} />
           </span>
         </button>
 
-        <button onClick={()=>decrementBtn()}>
+        <button onClick={() => decrementBtn()}>
           <span className={`cursor-pointer text-gray-600 mx-2`}>
             <FontAwesomeIcon icon={faRightLong} />
           </span>
         </button>
+        </div>
       </header>
+
+      <div className={`grid grid-cols-7 grid-rows-6`}>
+        {currentMonth[0].map((day, i) => (
+          <span key={i} className={`text-sm py-2 text-center`}>
+            {daysOfWeek[i]}
+          </span>
+        ))}
+
+        {currentMonth.map((row, i) => (
+          <React.Fragment>
+            {row.map((day, idx) => (
+              <button className={`py-1 w-full ${getCurrentDayClass(day)}`} key={idx} onClick={()=>{
+                dispatch(setIndexBySmallCalendar(currentMonthIdx))
+                dispatch(setDaySelectedBySmallCalendar(day))
+                getCurrentDayClass(day)
+              }}>
+                <span className={`text-sm`}>{day.getDate()}</span>
+              </button>
+            ))}
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
 };
 
 //dispatch(increment(-1))
+function formatDate(t: Date, a: {}[], s: string) {
+  function format(m: any) {
+    let f = new Intl.DateTimeFormat("en", m);
+    return f.format(t);
+  }
+  return a.map(format).join(s);
+}

@@ -1,4 +1,4 @@
-import {  DECREMENT_MONTH, INCREMENT_MONTH, IProps, monthIndexActionTypes } from "./TypeMonthIndex";
+import {  DECREMENT_MONTH, INCREMENT_MONTH, IProps, monthIndexActionTypes, RESET } from "./TypeMonthIndex";
 
 const initialState : IProps = {
     monthIndex  : new Date().getMonth(),
@@ -17,6 +17,13 @@ export function monthIndexReducer (state = initialState , action:any): IProps  {
             return {
                 ...state,
                 monthIndex  : state.monthIndex  + action.payload
+            };
+        }
+
+        case RESET: {
+            return {
+                ...state,
+                monthIndex  : new Date().getMonth(),
             };
         }
 

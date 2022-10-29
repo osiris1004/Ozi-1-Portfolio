@@ -3,12 +3,14 @@
 
 
 import { configureStore } from "@reduxjs/toolkit"
+import { globalReducer } from "./globalRedux/Reducer"
 import { monthIndexReducer} from "./MonthNavigation/ReducerMonthIndex"
 
 
 export const store = configureStore({
   reducer: {
-    monthIndex: monthIndexReducer
+    monthIndex: monthIndexReducer,
+    global : globalReducer
   }
 })
 
