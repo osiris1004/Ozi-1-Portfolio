@@ -38,9 +38,16 @@ export const  setUpdateEventData = (n : Object) => {
     }                              
 } 
 
-export const  setSelectedEvent= (n : Object | null) => {
+export const  setDeleteEventData = (n : number) => {
     return {                      
-        type: SET_SELECTED_EVENT ,
+        type: SET_DELETE_EVENT_DATA,
         payload : n 
     }                              
 } 
+export const  setSelectedEvent= (n : Object | null) => {
+    return {                      
+        type: SET_SELECTED_EVENT ,
+        payload : {id: n} 
+    }                              
+} 
+

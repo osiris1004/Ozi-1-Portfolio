@@ -42,15 +42,16 @@ interface setUpdateEventDataAction {
     payload : {title:string, description:string, selectedLabel :string, day: Date}
 }
 
-interface setDeleteEventDataAction {
-    type : typeof SET_DELETE_EVENT_DATA
-    payload : {title:string, description:string, selectedLabel :string, day: Date}
+
+interface setSelectedEventAction {
+    type : typeof SET_SELECTED_EVENT
+    payload : {id:number, title:string, description:string, selectedLabel :string, day: Date} | null
 }
 
 
-interface setSelectedEventAction {
+interface setDeleteEventDataAction {
     type : typeof SET_DELETE_EVENT_DATA
-    payload : {title:string, description:string, selectedLabel :string, day: Date}
+    payload : {id: number}
 }
 
 

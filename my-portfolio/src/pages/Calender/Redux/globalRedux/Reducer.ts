@@ -10,6 +10,8 @@ const initialState : IProps = {
     selectedEvent : null
 };
 
+console.log(initialState.savedEvent)
+
 export function globalReducer (state = initialState , action:any): IProps{
     switch (action.type) {
         case SET_INDEX_BY_SMALL_CALENDAR: {
@@ -47,7 +49,7 @@ export function globalReducer (state = initialState , action:any): IProps{
                 savedEvent  :  state.savedEvent.map((item, idx)=>{ return idx === action.payload.id ? action.payload : item }),
             };
         }
-
+        
         case SET_DELETE_EVENT_DATA: {
             return {
                 ...state,
@@ -65,4 +67,6 @@ export function globalReducer (state = initialState , action:any): IProps{
         default:
             return state;
     }
+
+    
 }

@@ -51,7 +51,7 @@ export const SmallCalendar = () => {
 
   const daySelected = useAppSelector(state => state.global.daySelected)
   const getCurrentDayClass = (day :Date) =>{
-    console.log(day.getDate() )
+   // console.log(day.getDate() )
 
     // const slcDay = daySelected && daySelected
     // console.log(slcDay )

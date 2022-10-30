@@ -3,10 +3,11 @@ import { faBarsProgress } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faSquareMinus } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { setSaveEventData, setSelectedEvent, setShowEvent, setUpdateEventData } from "../../Redux/globalRedux/Action";
+import { setDeleteEventData, setSaveEventData, setSelectedEvent, setShowEvent, setUpdateEventData } from "../../Redux/globalRedux/Action";
 import { title } from "process";
 
 const labelsClass = ["indigo", "gray", "green", "blue", "red", "purple"];
@@ -21,11 +22,11 @@ export const EventModal = () => {
   const [selectedLabel, setSelectedLabel] = useState(`labelsClass[0]`);
  
 
-  
+ 
   useEffect(()=>{
     setTitle(selectedEvent?.title)
     setDescription(selectedEvent?.description)
-    console.log(selectedEvent)
+    console.log(selectedEvent?.id)
   },[selectedEvent])
 
   
@@ -42,6 +43,15 @@ export const EventModal = () => {
           <span className={`text-gray-400`}>
             <FontAwesomeIcon icon={faBarsProgress} />
           </span>
+          {selectedEvent && (
+            <span className={" text-gray-"} onClick={()=>{
+              dispatch(setDeleteEventData(selectedEvent.id))
+              dispatch(setShowEvent(false))
+              dispatch(setSelectedEvent(null))
+              }}>
+              <FontAwesomeIcon icon={faTrash }/>
+            </span>
+          )}
           <button>
             <span
               className={`text-gray-400`}
