@@ -1,12 +1,13 @@
 
-import { globalActionTypes, IProps, SET_DAY_SELECTED,  SET_DELETE_EVENT_DATA,  SET_EVENT_MODAL, SET_INDEX_BY_SMALL_CALENDAR, SET_SAVE_EVENT_DATA, SET_UPDATE_EVENT_DATA } from "./Type";
+import { globalActionTypes, IProps, SET_DAY_SELECTED,  SET_DELETE_EVENT_DATA,  SET_EVENT_MODAL, SET_INDEX_BY_SMALL_CALENDAR, SET_SAVE_EVENT_DATA, SET_SELECTED_EVENT, SET_UPDATE_EVENT_DATA } from "./Type";
 
 
 const initialState : IProps = {
     smallCalendarMonth  : new Date().getMonth(),
     daySelected : new Date(),
     showEventModal: false,
-    savedEvent : []
+    savedEvent : [],
+    selectedEvent : null
 };
 
 export function globalReducer (state = initialState , action:any): IProps{
@@ -43,14 +44,21 @@ export function globalReducer (state = initialState , action:any): IProps{
             return {
                 ...state,
                 
-                savedEvent  :  state.savedEvent.map((item)=>{ return item.title === action.payload.title ? action.payload : item }),
+                savedEvent  :  state.savedEvent.map((item, idx)=>{ return idx === action.payload.id ? action.payload : item }),
             };
         }
 
         case SET_DELETE_EVENT_DATA: {
             return {
                 ...state,
-                savedEvent  :  state.savedEvent.filter(item=> item.title !== action.payload.title ),
+                savedEvent  :  state.savedEvent.filter((item, idx)=> idx !== action.payload.id ),
+            };
+        }
+
+        case SET_SELECTED_EVENT: {
+            return {
+                ...state,
+                selectedEvent  :  action.payload,
             };
         }
 

@@ -6,18 +6,27 @@ import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { setSaveEventData, setShowEvent } from "../../Redux/globalRedux/Action";
+import { setSaveEventData, setSelectedEvent, setShowEvent, setUpdateEventData } from "../../Redux/globalRedux/Action";
 import { title } from "process";
 
 const labelsClass = ["indigo", "gray", "green", "blue", "red", "purple"];
 
 export const EventModal = () => {
-  const [title, setTitle] = useState(``);
-  const [description, setDescription] = useState(``);
-  const [selectedLabel, setSelectedLabel] = useState(`labelsClass[0]`);
+
   const daySelected = useAppSelector((state) => state.global.daySelected);
+  const selectedEvent = useAppSelector((state) => state.global.selectedEvent);
+
+  const [title, setTitle] = useState<string>();
+  const [description, setDescription] = useState<string>();
+  const [selectedLabel, setSelectedLabel] = useState(`labelsClass[0]`);
+ 
 
   
+  useEffect(()=>{
+    setTitle(selectedEvent?.title)
+    setDescription(selectedEvent?.description)
+    console.log(selectedEvent)
+  },[selectedEvent])
 
   
 
@@ -102,13 +111,25 @@ export const EventModal = () => {
         </div>
 
         <footer className={`flex justify-end border-t p-3 mt-5`}>
-                    <button type="submit" className={`bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white`} onClick ={(event)=>{
-                        event.preventDefault()
-                        dispatch(setSaveEventData({title:title, description:description, selectedLabel:selectedLabel, day:daySelected}))
-                        dispatch(setShowEvent(false))
-                    }}>
-                        Save
-                    </button>
+                    {selectedEvent && (
+                        <button type="submit" className={`bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white`} onClick ={(event)=>{
+                            event.preventDefault()
+                            dispatch(setUpdateEventData({id:selectedEvent.id, title:title, description:description, selectedLabel:selectedLabel, day:daySelected}))
+                            dispatch(setShowEvent(false))
+                            dispatch(setSelectedEvent(null))
+                        }}>
+                            Edit
+                        </button>
+                    )}
+                    {!selectedEvent && (
+                        <button type="submit" className={`bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white`} onClick ={(event)=>{
+                            event.preventDefault()
+                            dispatch(setSaveEventData({title:title, description:description, selectedLabel:selectedLabel, day:daySelected}))
+                            dispatch(setShowEvent(false))
+                        }}>
+                            Save
+                        </button>
+                    )}
         </footer>
       </form>
     </div>

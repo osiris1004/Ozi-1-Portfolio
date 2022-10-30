@@ -3,6 +3,7 @@ export interface IProps {
     daySelected : Date
     showEventModal : boolean
     savedEvent : {title:string, description:string, selectedLabel :string, day: Date}[]
+    selectedEvent : {id:number, title:string, description:string, selectedLabel :string, day: Date} | null
 }
 
 export const SET_INDEX_BY_SMALL_CALENDAR = "SET_INDEX_BY_SMALL_CALENDAR";
@@ -11,6 +12,7 @@ export const SET_EVENT_MODAL = "SET_EVENT_MODAL"
 export const SET_SAVE_EVENT_DATA = "SET_SAVE_EVENT_DATA"
 export const SET_UPDATE_EVENT_DATA = "SET_UPDATE_EVENT_DATA"
 export const SET_DELETE_EVENT_DATA = "SET_DELETE_EVENT_DATA"
+export const SET_SELECTED_EVENT = "SET_SELECTED_EVENT"
 
 
 interface setIndexBySmallCalendarAction {
@@ -46,10 +48,16 @@ interface setDeleteEventDataAction {
 }
 
 
+interface setSelectedEventAction {
+    type : typeof SET_DELETE_EVENT_DATA
+    payload : {title:string, description:string, selectedLabel :string, day: Date}
+}
 
 
 
-export type globalActionTypes = setIndexBySmallCalendarAction | setDaySelectedBySmallCalendarAction | setShowEventAction | setSaveEventDataAction | setUpdateEventDataAction | setDeleteEventDataAction
+
+
+export type globalActionTypes = setIndexBySmallCalendarAction | setDaySelectedBySmallCalendarAction | setShowEventAction | setSaveEventDataAction | setUpdateEventDataAction | setDeleteEventDataAction | setSelectedEventAction
 
 
 

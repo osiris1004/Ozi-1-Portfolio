@@ -1,6 +1,6 @@
 import { type } from '@testing-library/user-event/dist/type'
 import React, { useEffect, useState } from 'react'
-import { setDaySelectedBySmallCalendar, setShowEvent } from '../../Redux/globalRedux/Action'
+import { setDaySelectedBySmallCalendar, setSelectedEvent, setShowEvent } from '../../Redux/globalRedux/Action'
 import { useAppDispatch, useAppSelector } from '../../Redux/hooks'
 import { Month } from '../Month/Month'
 
@@ -30,8 +30,7 @@ export const Day = ({day, index}:Props) => {
         
     }
     const dispatch = useAppDispatch();
-    const daySelected = useAppSelector((state) => state.global.daySelected);
-    const showEventModal= useAppSelector((state) => state.global.showEventModal);
+  
   return (
     <div className={`border border-gray-200 flex flex-col `}>
        <header className={"flex flex-col items-center"}>
@@ -47,7 +46,7 @@ export const Day = ({day, index}:Props) => {
             dispatch(setShowEvent(true))
         }}>  
             {dayEvents.map((item,i)=>(
-                <div key={i} className={`bg-${item.selectedLabel}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate border`}>
+                <div key={i} className={`bg-${item.selectedLabel}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate border`} onClick={()=>dispatch(setSelectedEvent({id:i, title:item.title, description:item.description, selectedLabel :item.selectedLabel, day: item.day}))}>
                     {item.title}
                 </div>
             ))}
