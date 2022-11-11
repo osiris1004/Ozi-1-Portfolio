@@ -20,7 +20,7 @@ export const Day = ({day, index}:Props) => {
         
         const events = savedEvent.filter(evt => evt.day === day)
         setDayEvents(events)
-       console.log(events)
+       
     },[savedEvent])
 
     const getCurrentDayClass = () =>{

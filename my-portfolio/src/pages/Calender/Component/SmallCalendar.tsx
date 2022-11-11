@@ -102,7 +102,7 @@ const dispatch = useAppDispatch()
         ))}
 
         {currentMonth.map((row, i) => (
-          <React.Fragment>
+          <React.Fragment key={i}>
             {row.map((day, idx) => (
               <button className={`py-1 w-full ${getCurrentDayClass(day)}`} key={idx} onClick={()=>{
                 dispatch(setIndexBySmallCalendar(currentMonthIdx))
