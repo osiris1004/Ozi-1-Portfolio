@@ -51,7 +51,7 @@ export const SmallCalendar = () => {
 
   const daySelected = useAppSelector(state => state.global.daySelected)
   const getCurrentDayClass = (day :Date) =>{
-    console.log(day.getDate() )
+   // console.log(day.getDate() )
 
     // const slcDay = daySelected && daySelected
     // console.log(slcDay )
@@ -102,7 +102,7 @@ const dispatch = useAppDispatch()
         ))}
 
         {currentMonth.map((row, i) => (
-          <React.Fragment>
+          <React.Fragment key={i}>
             {row.map((day, idx) => (
               <button className={`py-1 w-full ${getCurrentDayClass(day)}`} key={idx} onClick={()=>{
                 dispatch(setIndexBySmallCalendar(currentMonthIdx))

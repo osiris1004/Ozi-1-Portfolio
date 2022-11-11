@@ -2,8 +2,9 @@
 
 
 
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
 import { globalReducer } from "./globalRedux/Reducer"
+import { SET_DAY_SELECTED, SET_DELETE_EVENT_DATA, SET_SAVE_EVENT_DATA, SET_SELECTED_EVENT } from "./globalRedux/Type"
 import { monthIndexReducer} from "./MonthNavigation/ReducerMonthIndex"
 
 
@@ -11,7 +12,17 @@ export const store = configureStore({
   reducer: {
     monthIndex: monthIndexReducer,
     global : globalReducer
-  }
+  },
+  middleware : (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck :{
+      ignoredActions: [SET_DAY_SELECTED, SET_SAVE_EVENT_DATA,SET_SELECTED_EVENT, SET_DELETE_EVENT_DATA ],
+      
+      ignoredActionPaths: ['daySelected','savedEvent','selectedEvent'],
+            ignoredPaths: ['global.daySelected','global.savedEvent','global.selectedEvent']
+  },
+  
+})
+ 
 })
 
 

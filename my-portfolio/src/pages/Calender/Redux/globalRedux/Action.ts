@@ -1,4 +1,4 @@
-import { SET_DAY_SELECTED, SET_EVENT_MODAL, SET_INDEX_BY_SMALL_CALENDAR } from "./Type"
+import { IProps, SET_DAY_SELECTED, SET_DELETE_EVENT_DATA, SET_EVENT_MODAL, SET_INDEX_BY_SMALL_CALENDAR, SET_SAVE_EVENT_DATA, SET_SELECTED_EVENT, SET_UPDATE_EVENT_DATA } from "./Type"
 
 
 export const  setIndexBySmallCalendar = (n : number) => {
@@ -23,3 +23,31 @@ export const  setShowEvent = (n : boolean) => {
         payload : n 
     }                              
 } 
+
+export const  setSaveEventData = (n : Object) => {
+    return {                      
+        type: SET_SAVE_EVENT_DATA ,
+        payload : n 
+    }                              
+} 
+
+export const  setUpdateEventData = (n : Object) => {
+    return {                      
+        type: SET_UPDATE_EVENT_DATA ,
+        payload : n 
+    }                              
+} 
+
+export const  setDeleteEventData = (n : number) => {
+    return {                      
+        type: SET_DELETE_EVENT_DATA,
+        payload : n 
+    }                              
+} 
+export const  setSelectedEvent= (n : Object | null) => {
+    return {                      
+        type: SET_SELECTED_EVENT ,
+        payload : {id: n} 
+    }                              
+} 
+

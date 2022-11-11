@@ -1,14 +1,38 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBarsProgress } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faSquareMinus } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { setShowEvent } from "../../Redux/globalRedux/Action";
+import {
+  setDeleteEventData,
+  setSaveEventData,
+  setSelectedEvent,
+  setShowEvent,
+  setUpdateEventData,
+} from "../../Redux/globalRedux/Action";
 import { title } from "process";
 
+const labelsClass : string[]= ['indigo','gray','green','blue','red', 'purple'];
+
+//"indigo", "gray", "green", "blue", "red", "purple"
+
 export const EventModal = () => {
-  const [title, setTitle] = useState(``);
   const daySelected = useAppSelector((state) => state.global.daySelected);
+  const selectedEvent = useAppSelector((state) => state.global.selectedEvent);
+
+  const [title, setTitle] = useState<string>();
+  const [description, setDescription] = useState<string>();
+  const [selectedLabel, setSelectedLabel] = useState(`labelsClass[0]`);
+
+  useEffect(() => {
+    setTitle(selectedEvent?.title);
+    setDescription(selectedEvent?.description);
+    console.log(selectedEvent?.id);
+  }, [selectedEvent]);
 
   const dispatch = useAppDispatch();
   return (
@@ -22,6 +46,18 @@ export const EventModal = () => {
           <span className={`text-gray-400`}>
             <FontAwesomeIcon icon={faBarsProgress} />
           </span>
+          {selectedEvent && (
+            <span
+              className={" text-gray-"}
+              onClick={() => {
+                dispatch(setDeleteEventData(selectedEvent.id));
+                dispatch(setShowEvent(false));
+                dispatch(setSelectedEvent(null));
+              }}
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </span>
+          )}
           <button>
             <span
               className={`text-gray-400`}
@@ -46,10 +82,95 @@ export const EventModal = () => {
 
             <span className={`text-gray-400`}>
               <FontAwesomeIcon icon={faBarsProgress} />
-              <p>{daySelected.toLocaleDateString("en-US", { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+              <p>
+                {daySelected.toLocaleDateString("en-US", {
+                  weekday: "long",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
             </span>
+
+            <span className={`text-gray-400`}>
+              <FontAwesomeIcon icon={faSquareMinus} />
+            </span>
+            <input
+              type={`text`}
+              name={`title`}
+              placeholder={`Add Description`}
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+              required
+              className={`pt-3 border-0 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500 `}
+            />
+
+            <span className={`text-gray-400`}>
+              <FontAwesomeIcon icon={faBookmark} />
+            </span>
+
+            <div className="flex gap-x-2">
+              {['indigo','gray','green','blue','red', 'purple'].map((lbClass, i) => (
+                <span
+                  key={i}
+                  onClick={() => setSelectedLabel(lbClass)}
+                  className={`bg-${lbClass}-900 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
+                >
+                  {/* {selectedLabel === lbClass && (
+                    <span className={`text-white text-sm`}>
+                      <FontAwesomeIcon icon={faCheck} />
+                    </span>
+                  )} */}
+                  
+                </span>
+              ))}
+            </div>
           </div>
         </div>
+
+        <footer className={`flex justify-end border-t p-3 mt-5`}>
+          {selectedEvent && (
+            <button
+              type="submit"
+              className={`bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white`}
+              onClick={(event) => {
+                event.preventDefault();
+                dispatch(
+                  setUpdateEventData({
+                    id: selectedEvent.id,
+                    title: title,
+                    description: description,
+                    selectedLabel: selectedLabel,
+                    day: daySelected,
+                  })
+                );
+                dispatch(setShowEvent(false));
+                dispatch(setSelectedEvent(null));
+              }}
+            >
+              Edit
+            </button>
+          )}
+          {!selectedEvent && (
+            <button
+              
+              className={`bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white`}
+              onClick={(event) => {
+                event.preventDefault();
+                dispatch(
+                  setSaveEventData({
+                    title: title,
+                    description: description,
+                    selectedLabel: selectedLabel,
+                    day: daySelected,
+                  })
+                );
+                dispatch(setShowEvent(false));
+              }}
+            >
+              Save
+            </button>
+          )}
+        </footer>
       </form>
     </div>
   );
