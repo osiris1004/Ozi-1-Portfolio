@@ -16,7 +16,7 @@ import {
 } from "../../Redux/globalRedux/Action";
 import { title } from "process";
 
-const labelsClass : string[]= ['indigo','gray','green','blue','red', 'purple'];
+const labelsClass : string[]= ["bg-indigo-900","bg-gray-900","bg-green-900","bg-blue-900","bg-red-900", "bg-purple-900"];
 
 //"indigo", "gray", "green", "blue", "red", "purple"
 
@@ -34,6 +34,7 @@ export const EventModal = () => {
     console.log(selectedEvent?.id);
   }, [selectedEvent]);
 
+  const cl = 'red'
   const dispatch = useAppDispatch();
   return (
     <div
@@ -109,17 +110,18 @@ export const EventModal = () => {
             </span>
 
             <div className="flex gap-x-2">
-              {['indigo','gray','green','blue','red', 'purple'].map((lbClass, i) => (
+              {labelsClass.map((lbClass, i) => (
                 <span
                   key={i}
                   onClick={() => setSelectedLabel(lbClass)}
-                  className={`bg-${lbClass}-900 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
+                  className={`${lbClass} w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
                 >
-                  {/* {selectedLabel === lbClass && (
+                
+                  {selectedLabel === lbClass && (
                     <span className={`text-white text-sm`}>
                       <FontAwesomeIcon icon={faCheck} />
                     </span>
-                  )} */}
+                  )}
                   
                 </span>
               ))}
