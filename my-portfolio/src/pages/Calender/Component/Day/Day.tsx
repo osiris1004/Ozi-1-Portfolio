@@ -28,7 +28,7 @@ export const Day = ({ day, index }: Props) => {
   const getCurrentDayClass = () => {
     if (new Date().getMonth() === day.getMonth()) {
       return new Date().getDate() === day.getDate()
-        ? "bg-blue-600 text-white rounded-full w-7 "
+        ? "bg-blue-600 text-white rounded-full w-7 text-right  pr-5 px-5"
         : "";
     }
   };
@@ -36,10 +36,11 @@ export const Day = ({ day, index }: Props) => {
 
   return (
     <div className={`border border-gray-200 flex flex-col `}>
-      <header className={"flex flex-col text-right  border"}>
+      <header className={"flex flex-col text-right  border relative "}>
         <p className={"text-sm my-1 leading-3"}>{daysOfWeek[index].toUpperCase()}</p>
-        <p className={`text-sm p-1 my-1 ${getCurrentDayClass()}`}>
+        <p className={`text-sm p-1 my-1 absolute right-0 top-5 ${getCurrentDayClass()}`}>
           {day.getDate()}
+          
         </p>
       </header>
       <div
@@ -52,9 +53,9 @@ export const Day = ({ day, index }: Props) => {
         {dayEvents.map((item, i) => (
           <div
             key={i}
-            className={`bg-${item.selectedLabel}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate border `}
+            className={`${item.selectedLabel} p-1 mr-6 text-white text-sm rounded mb-1 truncate border `}
             onClick={() => {
-                console.log("ok ok ok ")
+                console.log(item.selectedLabel)
               dispatch(
                 setSelectedEvent({
                   id: i,
