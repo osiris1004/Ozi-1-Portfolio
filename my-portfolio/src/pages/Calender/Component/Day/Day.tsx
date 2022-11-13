@@ -35,7 +35,7 @@ export const Day = ({ day, index }: Props) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className={`border border-gray-200 flex flex-col `}>
+    <div className={`border-r flex flex-col `}>
       <header className={"flex flex-col text-right  border relative "}>
         <p className={"text-sm my-1 leading-3"}>{daysOfWeek[index].toUpperCase()}</p>
         <p className={`text-sm p-1 my-1 absolute right-0 top-5 ${getCurrentDayClass()}`}>
