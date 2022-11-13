@@ -1,5 +1,5 @@
 
-import { globalActionTypes, IProps, SET_DAY_SELECTED,  SET_DELETE_EVENT_DATA,  SET_EVENT_MODAL, SET_INDEX_BY_SMALL_CALENDAR, SET_SAVE_EVENT_DATA, SET_SELECTED_EVENT, SET_UPDATE_EVENT_DATA } from "./Type";
+import { IProps, SET_DAY_SELECTED,  SET_DELETE_EVENT_DATA,  SET_EVENT_MODAL, SET_INDEX_BY_SMALL_CALENDAR, SET_SAVE_EVENT_DATA, SET_SELECTED_EVENT, SET_UPDATE_EVENT_DATA } from "./Type";
 
 
 const initialState : IProps = {
@@ -10,7 +10,7 @@ const initialState : IProps = {
     selectedEvent : null
 };
 
-console.log(initialState.savedEvent)
+
 
 export function globalReducer (state = initialState , action:any): IProps{
     switch (action.type) {
@@ -53,7 +53,7 @@ export function globalReducer (state = initialState , action:any): IProps{
         case SET_DELETE_EVENT_DATA: {
             return {
                 ...state,
-                savedEvent  :  state.savedEvent.filter((item, idx)=> idx !== action.payload.id ),
+                savedEvent  :  state.savedEvent.filter((item, idx)=> idx !== action.payload ),
             };
         }
 

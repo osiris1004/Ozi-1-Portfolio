@@ -14,7 +14,7 @@ import {
   setShowEvent,
   setUpdateEventData,
 } from "../../Redux/globalRedux/Action";
-import { title } from "process";
+
 
 const labelsClass : string[]= ["bg-indigo-900","bg-gray-900","bg-green-900","bg-blue-900","bg-red-900", "bg-purple-900"];
 
@@ -26,15 +26,16 @@ export const EventModal = () => {
 
   const [title, setTitle] = useState<string>();
   const [description, setDescription] = useState<string>();
-  const [selectedLabel, setSelectedLabel] = useState(`labelsClass[0]`);
+  const [selectedLabel, setSelectedLabel] = useState(selectedEvent ? selectedEvent.selectedLabel :labelsClass[0]);
 
   useEffect(() => {
     setTitle(selectedEvent?.title);
     setDescription(selectedEvent?.description);
-    console.log(selectedEvent?.id);
-  }, [selectedEvent]);
+    console.log(selectedEvent);
+    
+  }, [selectedEvent,daySelected]);
 
-  const cl = 'red'
+
   const dispatch = useAppDispatch();
   return (
     <div
@@ -51,6 +52,7 @@ export const EventModal = () => {
             <span
               className={" text-gray-"}
               onClick={() => {
+                console.log(selectedEvent.id)
                 dispatch(setDeleteEventData(selectedEvent.id));
                 dispatch(setShowEvent(false));
                 dispatch(setSelectedEvent(null));
@@ -62,7 +64,12 @@ export const EventModal = () => {
           <button>
             <span
               className={`text-gray-400`}
-              onClick={() => dispatch(setShowEvent(false))}
+              onClick={(event) => {
+                console.log("ok ok ")
+                event.preventDefault();
+                dispatch(setShowEvent(false));
+                dispatch(setSelectedEvent(null));
+              }}
             >
               <FontAwesomeIcon icon={faXmark} />
             </span>
@@ -152,6 +159,7 @@ export const EventModal = () => {
               Edit
             </button>
           )}
+          
           {!selectedEvent && (
             <button
               
@@ -167,6 +175,7 @@ export const EventModal = () => {
                   })
                 );
                 dispatch(setShowEvent(false));
+                dispatch(setSelectedEvent(null));
               }}
             >
               Save
