@@ -26,7 +26,7 @@ export const Contact = () => {
                 <img
             alt={"profile"}
             src={
-              "https://brittanychiang.com/static/30a645f7db6038f83287d0c6042d3b2b/f9526/me.avif"
+              "https://cloud-campus.fr/wp-content/uploads/2020/09/logo.jpg"
             }
           />
                 </div>
