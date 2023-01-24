@@ -1,5 +1,8 @@
 import React from 'react'
 import { Index } from './Calender/Index'
+import HomePage from './HomePage/HomePage'
+import { BlogForm } from '../components/BlogForm/BlogForm'
+import { Board } from './BlogPages/Board'
 
 
 
@@ -8,8 +11,10 @@ const KosziE = () => {
   return (
     <div>
       
-      {/* <HomePage/> */}
-      <Index/>
+      {/* <HomePage/>
+      <Index/> */}
+  
+      <Board/>
     
     </div>
   )

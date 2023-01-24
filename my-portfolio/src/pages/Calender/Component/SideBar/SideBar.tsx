@@ -5,7 +5,7 @@ import { SmallCalendar } from '../SmallCalendar'
 export const SideBar = () => {
   return (
     <aside>
-      <CreateEventButton/>
+     <div className='flex flex-row, justify-center py-5'> <CreateEventButton/></div>
       <SmallCalendar/>
     </aside>
   )

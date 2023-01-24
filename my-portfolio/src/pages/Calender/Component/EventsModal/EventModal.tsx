@@ -14,9 +14,9 @@ import {
   setShowEvent,
   setUpdateEventData,
 } from "../../Redux/globalRedux/Action";
-import { title } from "process";
 
-const labelsClass : string[]= ['indigo','gray','green','blue','red', 'purple'];
+
+const labelsClass : string[]= ["bg-indigo-900","bg-gray-900","bg-green-900","bg-blue-900","bg-red-900", "bg-purple-900"];
 
 //"indigo", "gray", "green", "blue", "red", "purple"
 
@@ -26,20 +26,22 @@ export const EventModal = () => {
 
   const [title, setTitle] = useState<string>();
   const [description, setDescription] = useState<string>();
-  const [selectedLabel, setSelectedLabel] = useState(`labelsClass[0]`);
+  const [selectedLabel, setSelectedLabel] = useState(selectedEvent ? selectedEvent.selectedLabel :labelsClass[0]);
 
   useEffect(() => {
     setTitle(selectedEvent?.title);
     setDescription(selectedEvent?.description);
-    console.log(selectedEvent?.id);
-  }, [selectedEvent]);
+    console.log(selectedEvent);
+    
+  }, [selectedEvent,daySelected]);
+
 
   const dispatch = useAppDispatch();
   return (
     <div
-      className={`h-screen w-full fixed left-0 top-0 flex justify-center items-center`}
+      className={`h-screen w-full fixed left-0 top-0 flex justify-center items-center  bg-slate-600/[.8] z-50`}
     >
-      <form className={`bg-white rounded-lg shadow-2xl w-1/4`}>
+      <form className={`bg-white rounded-lg shadow-2xl w-1/4 opacity-none `}>
         <header
           className={`bg-gray-100 px-4 py-2 flex justify-between items-center`}
         >
@@ -50,6 +52,7 @@ export const EventModal = () => {
             <span
               className={" text-gray-"}
               onClick={() => {
+                console.log(selectedEvent.id)
                 dispatch(setDeleteEventData(selectedEvent.id));
                 dispatch(setShowEvent(false));
                 dispatch(setSelectedEvent(null));
@@ -61,7 +64,12 @@ export const EventModal = () => {
           <button>
             <span
               className={`text-gray-400`}
-              onClick={() => dispatch(setShowEvent(false))}
+              onClick={(event) => {
+                console.log("ok ok ")
+                event.preventDefault();
+                dispatch(setShowEvent(false));
+                dispatch(setSelectedEvent(null));
+              }}
             >
               <FontAwesomeIcon icon={faXmark} />
             </span>
@@ -109,17 +117,18 @@ export const EventModal = () => {
             </span>
 
             <div className="flex gap-x-2">
-              {['indigo','gray','green','blue','red', 'purple'].map((lbClass, i) => (
+              {labelsClass.map((lbClass, i) => (
                 <span
                   key={i}
                   onClick={() => setSelectedLabel(lbClass)}
-                  className={`bg-${lbClass}-900 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
+                  className={`${lbClass} w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
                 >
-                  {/* {selectedLabel === lbClass && (
+                
+                  {selectedLabel === lbClass && (
                     <span className={`text-white text-sm`}>
                       <FontAwesomeIcon icon={faCheck} />
                     </span>
-                  )} */}
+                  )}
                   
                 </span>
               ))}
@@ -150,6 +159,7 @@ export const EventModal = () => {
               Edit
             </button>
           )}
+          
           {!selectedEvent && (
             <button
               
@@ -165,6 +175,7 @@ export const EventModal = () => {
                   })
                 );
                 dispatch(setShowEvent(false));
+                dispatch(setSelectedEvent(null));
               }}
             >
               Save

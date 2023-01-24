@@ -25,4 +25,4 @@ const  getMonth = (month = date.getMonth()) =>{
 
 
 
-export { getMonth}
+export {getMonth}

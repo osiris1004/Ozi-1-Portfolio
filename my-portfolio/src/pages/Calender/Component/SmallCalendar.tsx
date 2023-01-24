@@ -4,10 +4,7 @@ import { faRightLong } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import { getMonth } from "../util";
-import {
-  decrement,
-  increment,
-} from "../Redux/MonthNavigation/ActionMonthIndex";
+
 import { setDaySelectedBySmallCalendar, setIndexBySmallCalendar } from "../Redux/globalRedux/Action";
 
 export const SmallCalendar = () => {
@@ -76,8 +73,8 @@ const dispatch = useAppDispatch()
 
 
   return (
-    <div className={`mt-9`}>
-      <header className={`flex justify-between`}>
+    <div className={`mt-4 px-5`}>
+      <header className={`flex justify-between pb-3`}>
         <p className={`ml-4  text-gray-500 `}>{customDate}</p>
         <div>
         <button onClick={() => incrementBtn()}>
@@ -94,7 +91,7 @@ const dispatch = useAppDispatch()
         </div>
       </header>
 
-      <div className={`grid grid-cols-7 grid-rows-6`}>
+      <div className={`grid grid-cols-7 grid-rows-6 `}>
         {currentMonth[0].map((day, i) => (
           <span key={i} className={`text-sm py-2 text-center`}>
             {daysOfWeek[i]}
@@ -104,12 +101,12 @@ const dispatch = useAppDispatch()
         {currentMonth.map((row, i) => (
           <React.Fragment key={i}>
             {row.map((day, idx) => (
-              <button className={`py-1 w-full ${getCurrentDayClass(day)}`} key={idx} onClick={()=>{
+              <button className={` ${getCurrentDayClass(day)}`} key={idx} onClick={()=>{
                 dispatch(setIndexBySmallCalendar(currentMonthIdx))
                 dispatch(setDaySelectedBySmallCalendar(day))
                 getCurrentDayClass(day)
               }}>
-                <span className={`text-sm`}>{day.getDate()}</span>
+                <span className={`text-[10px] `}>{day.getDate()}</span>
               </button>
             ))}
           </React.Fragment>

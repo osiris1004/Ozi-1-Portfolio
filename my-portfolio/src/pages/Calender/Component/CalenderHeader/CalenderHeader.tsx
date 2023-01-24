@@ -13,11 +13,16 @@ export const CalenderHeader = () => {
   const date =new Date( year, monthIndex, new Date().getDate()).toDateString()
   
   return (
-    <header className="px-4 py-2 flex item-center border ">
-      <img src={logo} alt={"calender"} className={`mr-2 w-12 h-12`} />
+    <header className="px-4 py-2 flex flex-row item-center border ">
+     <div className="flex flex-row mr-auto">
+     <img src={logo} alt={"calender"} className={`mr-2 w-12 h-12`} />
       <h1 className={`mr-10 text-xl text-gray-500 font-bold`}> OSIRIS Calendar</h1>
-      <button className="border rounded py-2 px-4 mr-5" onClick={()=>dispatch(reset())}>Today</button>
-      <button onClick={()=>dispatch(increment(-1))}>
+     </div>
+    
+     
+     <div className="flex flex-row">
+     <button className="border rounded py-2 px-4 mr-5" onClick={()=>dispatch(reset())}>Today</button>
+     <button onClick={()=>dispatch(increment(-1))}>
         <span className={`cursor-pointer text-gray-600 mx-2`}>
           <FontAwesomeIcon icon={faLeftLong} />
         </span>
@@ -31,6 +36,7 @@ export const CalenderHeader = () => {
       <h2 className={`ml-4 text-xl text-gray-500 font-bold py-2`}>
         { date }
       </h2>
+     </div>
     </header>
   );
 };
