@@ -3,14 +3,11 @@ import { useForm } from 'react-hook-form';
 import { ControlledTextField } from './Field/ControlledTextField';
 import { Button } from '@mui/material';
 
-interface Iprop {
-  showForm? : () =>void
-  //blog:
-}
 
-export const BlogForm = ({showForm}:Iprop) => {
+export const BlogForm = () => {
     const { handleSubmit, control, formState} = useForm();
-    const [displayForm, setDisplayForm] = useState(true)
+ 
+   
     const onSubmit = (data : any)=>{
         console.log(data)
     }
@@ -18,10 +15,9 @@ export const BlogForm = ({showForm}:Iprop) => {
     const onErrors = (errors: any) => {
       console.error(errors)
     }
-
+//flex flex-col w-2/4 m-auto border gap-5
   return (
-    <form onSubmit={handleSubmit(onSubmit, onErrors)} className={`flex  border h-screen ${displayForm ? "block" : "none"}`}>
-      <div className='flex flex-col w-2/4 m-auto border gap-5' >
+    <form onSubmit={handleSubmit(onSubmit, onErrors)} className='bg-white flex flex-col  w-1/2 m-auto'>
       <h1>Add New post</h1>
       <ControlledTextField
         control={control}
@@ -57,7 +53,6 @@ export const BlogForm = ({showForm}:Iprop) => {
       >
         Add new post
       </button>
-      </div>
     </form>
   );
 }
