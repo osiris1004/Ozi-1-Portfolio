@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { BlogForm } from "../../components/BlogForm/BlogForm";
+import { Modal } from "../../components/Modal/Modal";
+import { Nav } from "../../components/BoardComponents/nav/Nav";
 
 export const Board = () => {
+  const [displayForm, setDisplayForm] = useState(false)
     const handleFormVisibility = () =>{
-        
+      setDisplayForm(true)
+    }
+    const close = () =>{
+      setDisplayForm(false)
     }
   return (
     <section>
-    <BlogForm showForm ={handleFormVisibility}/>
-      <div className="w-full flex justify-center">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleFormVisibility}>
-          Add new post
-        </button>
-      </div>
+      <Modal isDisplay={displayForm} close={close}>
+        <BlogForm />
+      </Modal>
+      <Nav>
+        <div className="w-full flex justify-center">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={handleFormVisibility}
+          >
+            Add new post
+          </button>
+        </div>
+      </Nav>
 
       <div className="flex flex-wrap justify-center gap-10 w-3/5 m-auto x-sm:w-full">
         <div className="flex w-[400px] border">
