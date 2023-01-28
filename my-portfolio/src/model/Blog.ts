@@ -1,15 +1,17 @@
 export class Blog {
     id: string
-    content: string
-    createdAt: string
-    title: string
-    updateAt: string
+    title: string;
+    content : string
+    categoryId : string
+    createdAt: Date;
+    updateAt: Date;
 
     constructor(data: any){
         this.id = data._id
-        this.content = data.content
-        this.createdAt = data.createdAt
         this.title = data.title
+        this.content = data.content
+        this.categoryId = data.categoryId
+        this.createdAt = data.createdAt
         this.updateAt = data.updateAt
     }
 }

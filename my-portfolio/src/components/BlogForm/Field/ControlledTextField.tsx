@@ -8,6 +8,7 @@ interface Icomp{
     label : string,
     rules?: any
     formState: FormState<FieldValues>
+    defaultValue? : string
     
 }
 
@@ -24,7 +25,7 @@ export const ControlledTextField = (props:Icomp) => {
       control={props.control}
       name={props.name}
       rules={props.rules}
-      defaultValue={''}
+      defaultValue={props.defaultValue ? props.defaultValue : ''}
       render={({field})=>(
         <>
            <TextField label={props.label}  value={field.value} onChange={field.onChange} error={!!error_} helperText = {error_}/>

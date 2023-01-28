@@ -7,55 +7,85 @@ import { Blog } from "../../model/Blog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
+
+
 export const Board = () => {
   const [displayForm, setDisplayForm] = useState(false);
-  const [blog, setBlog] = useState<Blog[] | null>(null);
+  const [refresh, setRefresh] = useState(true);
+  const [blogs, setBlogs] = useState<Blog[] | null>(null);
+  const [blogsById, setBlogsById] = useState<Blog | null>(null);
 
   useEffect(() => {
     (async () => {
-      const data = await BlogService.getAll();
-      setBlog(data);
+      const data = await BlogService.get();
+      setBlogs(data);
     })();
-  }, []);
+  }, [refresh]);
+  console.log(blogs)
 
-  //  useEffect(()=>{
-  //   (async()=>{
-  //    const data = await BlogService.getByID('63aa1a8c47a1b2f9b50bb5d8')
-  //    setBlog(data)
-  //   })()
-  //  },[])
+
+const handleRemove = async(id: string) =>  {
+  await BlogService.remove(id);
+  setRefresh(!refresh)
+  };
+
+  const handleUpdateButton = async(id: string) =>  {
+        const data = await BlogService.getByID(id)
+      setBlogsById(data)
+      setDisplayForm(true)
+};
 
   //  useEffect(() => {
   //    (async () => {
-  //      const data = await BlogService.update("63aa1a8c47a1b2f9b50bb5d8", {
-  //        bodyBlog: {
-  //          content: "new",
-  //        },
-  //        categoryId: "63964d59c83922581270e2e1",
+  //      const data = await BlogService.add({
+  //       title: "2",
+  //       content: "1",
   //      });
-  //      setBlog(data);
+  //      setBlogsById(data)
   //    })();
   //  }, []);
+  // console.log(blogsById);
 
-  //    useEffect(()=>{
+
+
+  //  useEffect(()=>{
   //   (async()=>{
-  //    const data = await BlogService.remove('63aa1a8c47a1b2f9b50bb5d8')
-  //    setBlog(data)
+  //    const data = await BlogService.getByID('63d43a1c206f5eb7388088c6')
+  //    setBlogsById(data)
   //   })()
   //  },[])
+  //  console.log(blogsById);
 
-  console.log(blog);
+  //  useEffect(() => {
+  //    (async () => {
+  //      const data = await BlogService.update("63d43a1c206f5eb7388088c6", {
+  //       title: "1",
+  //       content: "1",
+  //      });
+  //      setBlogsById(data)
+  //    })();
+  //  }, []);
+  // console.log(blogsById);
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const data = await BlogService.remove("63aa1a8c47a1b2f9b50bb5d8");
+  //     setBlogsById(data);
+  //   })();
+  // }, []);
+  // console.log(blogsById);
 
   const handleFormVisibility = () => {
     setDisplayForm(true);
   };
   const close = () => {
     setDisplayForm(false);
+    setBlogsById(null)
   };
   return (
     <section>
       <Modal isDisplay={displayForm} close={close}>
-        <BlogForm />
+        <BlogForm blog={blogsById} setRefresh={setRefresh} refresh={refresh} close={close}/>
       </Modal>
       <Nav>
         <div className="w-full flex justify-center">
@@ -68,10 +98,13 @@ export const Board = () => {
         </div>
       </Nav>
 
-      {blog &&
-        blog.length > 0 &&
-        blog.map((item, index) => (
-          <section className="flex flex-wrap justify-center gap-10 w-3/5 m-auto x-sm:w-full" key={index}>
+      {blogs &&
+        blogs.length > 0 &&
+        blogs.map((item, index) => (
+          <section
+            className="flex flex-wrap justify-center gap-10 w-3/5 m-auto x-sm:w-full"
+            key={index}
+          >
             <div className="flex w-[400px] border">
               <div
                 className="lg:h-auto w-48  bg-cover rounded-t "
@@ -80,17 +113,17 @@ export const Board = () => {
               <div className=" border-gray-400  bg-white rounded-b  p-4 flex flex-col justify-between leading-normal">
                 <div className="mb-8">
                   <p className="text-sm text-gray-600 flex items-center">
-                    <FontAwesomeIcon icon={faLayerGroup} className="fill-current text-gray-500 w-3 h-3 mr-2"/>
-                  
-                    Cathegory
+                    <FontAwesomeIcon
+                      icon={faLayerGroup}
+                      className="fill-current text-gray-500 w-3 h-3 mr-2"
+                    />
+                    {item.categoryId}
                   </p>
                   <div className="text-gray-900 font-bold text-xl mb-2">
-                    Can coffee make you a better developer?
+                    {item.title}
                   </div>
                   <p className="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                    exercitationem praesentium nihil.
+                    {item.content}
                   </p>
                 </div>
                 <div className="flex items-center">
@@ -100,18 +133,22 @@ export const Board = () => {
                     alt="Avatar of Jonathan Reinink"
                   />
                   <div className="text-sm">
+                    
+                  <p className="text-gray-900 leading-none">
+                      {item.createdAt && (item.createdAt.toString())}
+                    </p>
                     <p className="text-gray-900 leading-none">
-                      Jonathan Reinink
+                      {item.updateAt && (item.updateAt.toString())}
                     </p>
                     <p className="text-gray-600">Aug 18</p>
                   </div>
 
                   <div className="w-full flex justify-end gap-5">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>handleUpdateButton(item.id)}>
                       {" "}
                       update
                     </button>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>handleRemove(item.id)}>
                       {" "}
                       delete
                     </button>
