@@ -7,6 +7,10 @@ import { Blog } from "../../model/Blog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
+import logo from "../../assets/LOGO.png";
+import   styled   from 'styled-components';
+import   tw  from 'twin.macro';
+import { flexbox } from "@mui/system";
 
 
 export const Board = () => {
@@ -83,81 +87,120 @@ const handleRemove = async(id: string) =>  {
     setBlogsById(null)
   };
   return (
-    <section>
+    <section className="bg-gray-200 h-full">
       <Modal isDisplay={displayForm} close={close}>
-        <BlogForm blog={blogsById} setRefresh={setRefresh} refresh={refresh} close={close}/>
+        <BlogForm
+          blog={blogsById}
+          setRefresh={setRefresh}
+          refresh={refresh}
+          close={close}
+        />
       </Modal>
+      <div className="py-7">
       <Nav>
         <div className="w-full flex justify-center">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={handleFormVisibility}
-          >
-            Add new post
-          </button>
+          <Btn bgHoverColor="lightblue" bgColor="none" onClick={handleFormVisibility}>
+            <p>Add new post</p>
+          </Btn>
         </div>
       </Nav>
-
-      {blogs &&
-        blogs.length > 0 &&
-        blogs.map((item, index) => (
-          <section
-            className="flex flex-wrap justify-center gap-10 w-3/5 m-auto x-sm:w-full"
-            key={index}
-          >
-            <div className="flex w-[400px] border">
-              <div
-                className="lg:h-auto w-48  bg-cover rounded-t "
-                style={{ backgroundColor: "green" }}
-              ></div>
-              <div className=" border-gray-400  bg-white rounded-b  p-4 flex flex-col justify-between leading-normal">
-                <div className="mb-8">
-                  <p className="text-sm text-gray-600 flex items-center">
+      </div>
+      <CardContainer>
+        {blogs &&
+          blogs.length > 0 &&
+          blogs.map((item, index) => (
+            <Card key={index}>
+              <div></div>
+              <div>
+                <DataSection>
+                  <div>
                     <FontAwesomeIcon
                       icon={faLayerGroup}
                       className="fill-current text-gray-500 w-3 h-3 mr-2"
                     />
-                    {item.categoryId}
-                  </p>
-                  <div className="text-gray-900 font-bold text-xl mb-2">
-                    {item.title}
+                    <p>{item.categoryId}</p>
                   </div>
-                  <p className="text-gray-700 text-base">
-                    {item.content}
-                  </p>
-                </div>
-                <div className="flex items-center">
-                  <img
-                    className="w-10 h-10 rounded-full mr-4"
-                    src="https://images.ctfassets.net/hrltx12pl8hq/3j5RylRv1ZdswxcBaMi0y7/b84fa97296bd2350db6ea194c0dce7db/Music_Icon.jpg"
-                    alt="Avatar of Jonathan Reinink"
-                  />
-                  <div className="text-sm">
-                    
-                  <p className="text-gray-900 leading-none">
-                      {item.createdAt && (item.createdAt.toString())}
-                    </p>
-                    <p className="text-gray-900 leading-none">
-                      {item.updateAt && (item.updateAt.toString())}
-                    </p>
-                    <p className="text-gray-600">Aug 18</p>
+                  <div>
+                    <p>{item.title}</p>
                   </div>
-
-                  <div className="w-full flex justify-end gap-5">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>handleUpdateButton(item.id)}>
-                      {" "}
-                      update
-                    </button>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>handleRemove(item.id)}>
-                      {" "}
-                      delete
-                    </button>
+                  <div>
+                    <p>{item.content}</p>
                   </div>
-                </div>
+                  <div>
+                    <Footer>
+                      <div>
+                        <img
+                          className="w-10 h-10 rounded-full mr-4"
+                          src={logo}
+                          alt="Avatar of Jonathan Reinink"
+                        />
+                        <div>
+                          <p>{new Date(item.createdAt).toLocaleDateString()}</p>
+                          <p>{new Date(item.updateAt).toLocaleDateString()}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <Btn onClick={() => handleUpdateButton(item.id)}>
+                          <p>update</p>
+                        </Btn>
+                        <Btn
+                          bgColor="red"
+                          onClick={() => handleRemove(item.id)}
+                        >
+                          <p>delete</p>
+                        </Btn>
+                      </div>
+                    </Footer>
+                  </div>
+                </DataSection>
               </div>
-            </div>
-          </section>
-        ))}
+            </Card>
+          ))}
+      </CardContainer>
     </section>
   );
 };
+
+const CardContainer = styled.div`
+${tw` 
+//border-2  
+flex flex-wrap justify-center gap-5 sm:w-[80%] m-auto`}
+`
+const Card = styled.div`
+${tw`   
+border-gray-400  border-[1px] 
+rounded-md
+w-96 sm:w-5/12  flex [> div:nth-child(1)]:(basis-3/12 bg-red-200 )
+[> div:nth-child(2)]:(basis-full bg-white)
+`}
+`
+const DataSection = styled.div`
+${tw`  //border-2 border-black  
+flex flex-col gap-y-3 p-3 
+ [>div]:(/*border border-black */)
+[> div:nth-child(1)]:(flex items-center text-gray-500)
+[> div:nth-child(2)]:(text-gray-900 font-bold text-xl)
+[> div:nth-child(3)]:(text-gray-700 text-base)
+`}
+`
+const Footer =styled.div`
+${tw`  flex flex-wrap p-3 py-4 gap-y-3
+[> div:nth-child(1)]:(flex mr-auto)
+[> div:nth-child(2)]:(flex gap-x-2 items-center)
+`}
+`
+
+interface Ip{
+  bgColor? :string
+  bgHoverColor? :string
+  fontColor?:string
+}
+const Btn = styled.button<Ip>`
+${tw`  rounded-xl  font-medium h-10
+  [> p]:(flex items-center px-4 border-amber-500)
+`}
+background-color: ${({bgColor}) => bgColor};
+${({bgColor}) => bgColor ?`&:hover { background: ${bgColor}; color:black }` : tw`bg-blue-200` };
+${({bgHoverColor}) => bgHoverColor ? `&:hover { background: ${bgHoverColor} }` : ''};
+
+`

@@ -17,7 +17,7 @@ export const Nav = ({ children }: Iprop) => {
 //<i class="fa-solid fa-moon"></i>
 //<i class="fa-regular fa-moon"></i>
   return (
-    <div className="border bg-slate-800 text-white mt-7 mb-7 h-20 flex w-8/12 m-auto rounded-[24px] px-14 items-center">
+    <div className="border bg-slate-800 text-white  h-20 flex w-8/12 m-auto rounded-[24px] px-14 items-center">
       <div className="mr-auto">
         {" "}
         <img

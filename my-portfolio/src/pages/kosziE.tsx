@@ -16,8 +16,8 @@ const KosziE = () => {
   return (
     <div>
       
-      {/* <HomePage/>
-      <Index/> */}
+       <HomePage/>
+      <Index/> 
   
       <Board/>
     
